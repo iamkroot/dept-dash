@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Project, Publication, ResearchScholar
 
-# Register your models here.
+admin.site.register(Project)
+admin.site.register(Publication)
+admin.site.register(ResearchScholar)
