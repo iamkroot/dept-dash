@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager
 
 
 class CustomUserManager(BaseUserManager):
-    """Custom user model moanager where email is the unique id"""
+    """Custom user model manager where email is the unique id"""
 
     def create_user(self, email, password, **extra_fields):
         if not email:
