@@ -8,6 +8,9 @@ from .managers import CustomUserManager
 class Department(models.Model):
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+
 
 class CustomUser(AbstractUser):
     """Represents the base user model"""
@@ -25,10 +28,10 @@ class CustomUser(AbstractUser):
 
     @property
     def short_id(self):
-        return self.email[:self.email.find("@")].upper()
+        return self.email[:self.email.find("@")].lower()
 
     def __str__(self):
-        return f"{self.short_id} {self.name}"
+        return f"{self.name} ({self.short_id})"
 
 
 class Faculty(CustomUser):
@@ -43,13 +46,13 @@ class Faculty(CustomUser):
 
     class Meta:
         verbose_name = "faculty"
+        verbose_name_plural = "faculties"
         default_related_name = "faculties"
 
 
 class Student(CustomUser):
     # TODO: Add ID Num Regex Validator
     id_num = models.CharField("ID Number", max_length=15, primary_key=True)
-    dept = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "student"

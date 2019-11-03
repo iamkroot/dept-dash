@@ -1,6 +1,7 @@
 from django.db import models
 
-from users.models import Faculty, Student, CustomUser
+from users.models import Department, Faculty, Student
+from backend import settings
 
 
 class ResearchScholar(Student):
@@ -28,16 +29,14 @@ class ResearchScholar(Student):
     proposal_approval_date = models.DateField(null=True, blank=True)
     qualifier_passing_date = models.DateField(null=True, blank=True)
     supervisor = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
+    dept = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "research scholar"
         default_related_name = "scholars"
 
 
-class Publication(models.Model):
-    CONFERENCE = "CNF"
-    JOURNAL = "JRN"
-    PUB_TYPE_CHOICES = [(CONFERENCE, "conference"), (JOURNAL, "journal")]
+class ResearchWork(models.Model):
     COMMUNICATED = "COM"
     REJECTED = "REJ"
     ACCEPTED = "ACT"
@@ -46,9 +45,21 @@ class Publication(models.Model):
         (REJECTED, "rejected"),
         (ACCEPTED, "accepted"),
     ]
-    author = models.ManyToManyField(CustomUser)
-    title = models.CharField(max_length=100)
+    authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="%(class)s")
+    title = models.CharField(max_length=250)
     status = models.CharField(max_length=3, choices=STATUS_CHOICES)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.title[:20] + "..." if len(self.title) > 20 else ""
+
+
+class Publication(ResearchWork):
+    CONFERENCE = "CNF"
+    JOURNAL = "JRN"
+    PUB_TYPE_CHOICES = [(CONFERENCE, "conference"), (JOURNAL, "journal")]
     pub_type = models.CharField(max_length=3, choices=PUB_TYPE_CHOICES)
     pub_date = models.DateField(null=True, blank=True)
     doi_number = models.CharField(
@@ -62,18 +73,15 @@ class Publication(models.Model):
         ordering = ["-pub_date"]
 
 
-class Project(models.Model):
+class Project(ResearchWork):
     proposed_by = models.ManyToManyField(Faculty)
-    author = models.ManyToManyField(ResearchScholar)
     agency = models.CharField(max_length=100)
-    title = models.CharField(max_length=300)
     pi_copi = models.CharField(
         "Principal Investigator/Co-Principal Investigator", max_length=100
     )
     send_date = models.DateField("date of sending", null=True, blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
-    status = models.CharField(max_length=50, null=True, blank=True)
 
     class Meta:
         verbose_name = "project"

@@ -18,5 +18,5 @@ class FacultySerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ("email", "name", "id_num", "dept")
+        fields = ("email", "name", "id_num")
         depth = 1
