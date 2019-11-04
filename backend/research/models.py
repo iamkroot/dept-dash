@@ -53,7 +53,7 @@ class ResearchWork(models.Model):
         abstract = True
 
     def __str__(self):
-        return self.title[:20] + "..." if len(self.title) > 20 else ""
+        return self.title[:20] + ("..." if len(self.title) > 20 else "")
 
 
 class Publication(ResearchWork):
