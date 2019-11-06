@@ -5,6 +5,7 @@ from .serializers import (
     PublicationSerializer,
 )
 from .models import ResearchScholar, Project, Publication
+from users.permissions import IsFaculty, IsHoD, IsResearchScholar, IsStudent
 
 
 class ResearchScholarView(viewsets.ModelViewSet):
@@ -19,7 +20,7 @@ class ProjectView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         # TODO: HOD should be able to see all
-        return Project.objects.filter(author__id=self.request.user)
+        return Project.objects.filter(authors=self.request.user)
 
 
 class PublicationView(viewsets.ModelViewSet):
@@ -27,4 +28,4 @@ class PublicationView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         # TODO: HOD should be able to see all
-        return Publication.objects.filter(author__id=self.request.user)
+        return Publication.objects.filter(authors=self.request.user)
