@@ -96,6 +96,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_uid',
     'social_core.pipeline.social_auth.auth_allowed',
     'social_core.pipeline.social_auth.associate_by_email',
+    'auth.views.downcast_user',
 )
 
 # Password validation

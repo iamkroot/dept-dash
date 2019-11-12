@@ -16,6 +16,7 @@ class CustomUserBackend(ModelBackend):
     def get_user(self, *args, **kwargs):
         return self.downcast_user_type(super().get_user(*args, **kwargs))
 
+    @classmethod
     def downcast_user_type(self, user):
         """
         Retrieve the user from the first table that has a row with same email.
