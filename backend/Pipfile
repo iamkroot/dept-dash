@@ -9,6 +9,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 social-auth-core = "*"
 social-auth-app-django = "*"
+djangorestframework-simplejwt = "*"
 
 [requires]
 python_version = "3.7"
