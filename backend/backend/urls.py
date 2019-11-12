@@ -18,10 +18,11 @@ from django.urls import path
 from django.conf.urls import url, include
 from research import urls as research_urls
 from users import urls as users_urls
+from auth.views import exchange_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r"^api/", include(research_urls)),
     url(r"^api/", include(users_urls)),
-    url(r'^api/auth/', include('rest_auth.urls')),
+    url(r'^api/auth/(?P<backend>[^/]+)/', exchange_token),
 ]
