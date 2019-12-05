@@ -25,10 +25,13 @@ class ResearchScholar(Student):
     ]
     tenure_type = models.CharField(max_length=2, choices=TENURE_TYPE_CHOICES)
     fellowship = models.CharField(max_length=4, choices=FELLOWSHIP_CHOICES)
+    fellowship_details = models.TextField(null=True, blank=True)
     joining_date = models.DateField(null=True, blank=True)
     proposal_approval_date = models.DateField(null=True, blank=True)
     qualifier_passing_date = models.DateField(null=True, blank=True)
+    graduation_date = models.DateField(null=True, blank=True)
     supervisor = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
+    co_supervisor = models.TextField(null=True, blank=True)
     dept = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     class Meta:
@@ -47,6 +50,7 @@ class ResearchWork(models.Model):
     ]
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="%(class)s")
     title = models.CharField(max_length=250)
+    details = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=3, choices=STATUS_CHOICES)
 
     class Meta:
@@ -76,9 +80,11 @@ class Publication(ResearchWork):
 class Project(ResearchWork):
     proposed_by = models.ManyToManyField(Faculty)
     agency = models.CharField(max_length=100)
+    scheme = models.CharField(max_length=50)
     pi_copi = models.CharField(
         "Principal Investigator/Co-Principal Investigator", max_length=100
     )
+    np_form = models.ImageField("NP Form", null=True, blank=True)
     send_date = models.DateField("date of sending", null=True, blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
