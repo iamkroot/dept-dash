@@ -5,19 +5,25 @@ from .serializers import (
 )
 from .models import Project, Publication
 from users.permissions import IsFaculty, IsHoD, IsResearchScholar, IsStudent
+from rest_framework_extensions.mixins import NestedViewSetMixin
 
 
-class ProjectView(viewsets.ModelViewSet):
+class ProjectView(NestedViewSetMixin, viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
 
     def get_queryset(self):
         # TODO: HOD should be able to see all
-        return Project.objects.filter(authors=self.request.user)
+        queryset = Project.objects.filter(authors=self.request.user)
+
+        # need to filter in case of nested view
+        return super().filter_queryset_by_parents_lookups(queryset)
 
 
-class PublicationView(viewsets.ModelViewSet):
+class PublicationView(NestedViewSetMixin, viewsets.ModelViewSet):
     serializer_class = PublicationSerializer
 
     def get_queryset(self):
         # TODO: HOD should be able to see all
-        return Publication.objects.filter(authors=self.request.user)
+        queryset = Publication.objects.filter(authors=self.request.user)
+
+        return super().filter_queryset_by_parents_lookups(queryset)

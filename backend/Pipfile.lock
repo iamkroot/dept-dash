@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0ed8e0abbda4613a378fe903f9fd7d7c4eda5c135c7927e380facbff652f9674"
+            "sha256": "460f6a98e8981cad5203286b832a56267f8003507498f4203b9f2ac9f9538e72"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -74,6 +74,14 @@
             ],
             "index": "pypi",
             "version": "==4.4.0"
+        },
+        "drf-extensions": {
+            "hashes": [
+                "sha256:9a76d59c8ecc2814860e94a0c96a26a824e392cd4550f2efa928af43c002a750",
+                "sha256:a04cf188d27fdc13a1083a3ac9e4d72d3d93fcef76b3584191489c75d550c10d"
+            ],
+            "index": "pypi",
+            "version": "==0.6.0"
         },
         "idna": {
             "hashes": [
@@ -187,10 +195,10 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:a8a318824cc77d1fd4b2bec2ded92646630d7fe8619497b142c84a9e6f5a7293",
-                "sha256:f3c5fd51747d450d4dcf6f923c81f78f811aab8205fda64b0aba34a4e48b0745"
+                "sha256:2f3db8b19923a873b3e5256dc9c2dedfa883e33d87c690d9c7913e1f40673cdc",
+                "sha256:87716c2d2a7121198ebcb7ce7cccf6ce5e9ba539041cfbaeecfb641dc0bf6acc"
             ],
-            "version": "==1.25.7"
+            "version": "==1.25.8"
         }
     },
     "develop": {}

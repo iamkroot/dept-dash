@@ -1,11 +1,36 @@
 from django.urls import path, include
-from rest_framework import routers
 from .views import FacultyView, ResearchScholarView
+from rest_framework_extensions.routers import ExtendedDefaultRouter
+from research.views import PublicationView, ProjectView
 
+router = ExtendedDefaultRouter()
+faculty_routes = router.register(r'faculties', FacultyView, 'faculty')
+faculty_routes.register(
+    r'publications',
+    PublicationView,
+    basename="faculty-publication",
+    parents_query_lookups=["authors"]
+)
+faculty_routes.register(
+    r'projects',
+    ProjectView,
+    basename="faculty-project",
+    parents_query_lookups=["authors"]
+)
 
-router = routers.DefaultRouter()
-router.register(r'faculties', FacultyView, 'faculty')
-router.register(r'scholars', ResearchScholarView, 'scholar')
+scholar_routes = router.register(r'scholars', ResearchScholarView, 'scholar')
+scholar_routes.register(
+    r'publications',
+    PublicationView,
+    basename="scholar-publication",
+    parents_query_lookups=["authors"]
+)
+scholar_routes.register(
+    r'projects',
+    ProjectView,
+    basename="scholar-project",
+    parents_query_lookups=["authors"]
+)
 
 urlpatterns = [
     path("", include(router.urls))

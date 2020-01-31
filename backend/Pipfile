@@ -4,10 +4,13 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [packages]
-django = "*"
-djangorestframework = "*"
-django-cors-headers = "*"
-social-auth-core = "*"
-social-auth-app-django = "*"
-djangorestframework-simplejwt = "*"
-pillow = "*"
+django = ">=3.0.2"
+djangorestframework = ">=3.11.0"
+django-cors-headers = ">=3.2.1"
+social-auth-core = ">=3.2.0"
+social-auth-app-django = ">=3.1.0"
+djangorestframework-simplejwt = ">=4.3.0"
+pillow = ">=7.0.0"
+drf-extensions = ">=0.6.0"
+
+[dev-packages]
