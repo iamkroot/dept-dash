@@ -4,8 +4,8 @@ from .serializers import (
     PublicationSerializer,
 )
 from .models import Project, Publication
+from users.mixins import NestedViewSetMixin
 from users.permissions import IsFaculty, IsHoD, IsResearchScholar, IsStudent
-from rest_framework_extensions.mixins import NestedViewSetMixin
 
 
 class ProjectView(NestedViewSetMixin, viewsets.ModelViewSet):

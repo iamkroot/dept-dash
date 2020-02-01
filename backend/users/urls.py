@@ -9,13 +9,13 @@ faculty_routes.register(
     r'publications',
     PublicationView,
     basename="faculty-publication",
-    parents_query_lookups=["authors"]
+    parents_query_lookups=["authors__or__proposed_by"]
 )
 faculty_routes.register(
     r'projects',
     ProjectView,
     basename="faculty-project",
-    parents_query_lookups=["authors"]
+    parents_query_lookups=["authors__or__proposed_by"]
 )
 
 scholar_routes = router.register(r'scholars', ResearchScholarView, 'scholar')
