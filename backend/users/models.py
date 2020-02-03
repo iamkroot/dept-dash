@@ -95,4 +95,3 @@ class ResearchScholar(CustomUser):
     class Meta:
         verbose_name = "research scholar"
         default_related_name = "scholars"
-

@@ -1,11 +1,20 @@
 from rest_framework import serializers
 from .models import Project, Publication
-from users.serializers import FacultySerializer, CustomUserSerializer
+from users.serializers import (
+    FacultySerializer,
+    StudentSerializer,
+    ResearchScholarSerializer,
+)
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ResearchWorkSerializer(serializers.ModelSerializer):
+    faculty_authors = FacultySerializer(many=True)
+    student_authors = StudentSerializer(many=True)
+    scholar_authors = ResearchScholarSerializer(many=True)
+
+
+class ProjectSerializer(ResearchWorkSerializer):
     proposed_by = FacultySerializer(many=True, read_only=True)
-    authors = CustomUserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Project
@@ -13,9 +22,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         depth = 1
 
 
-class PublicationSerializer(serializers.ModelSerializer):
-    authors = CustomUserSerializer(many=True, read_only=True)
-
+class PublicationSerializer(ResearchWorkSerializer):
     class Meta:
         model = Publication
         fields = "__all__"

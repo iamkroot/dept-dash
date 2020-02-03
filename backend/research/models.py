@@ -1,7 +1,6 @@
 from django.db import models
 
-from users.models import Department, Faculty, Student
-from backend import settings
+from users.models import Faculty, Student, ResearchScholar
 
 
 class ResearchWork(models.Model):
@@ -13,7 +12,15 @@ class ResearchWork(models.Model):
         (REJECTED, "rejected"),
         (ACCEPTED, "accepted"),
     ]
-    authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="%(class)s")
+    faculty_authors = models.ManyToManyField(
+        Faculty, related_name="%(class)s", blank=True
+    )
+    student_authors = models.ManyToManyField(
+        Student, related_name="%(class)s", blank=True
+    )
+    scholar_authors = models.ManyToManyField(
+        ResearchScholar, related_name="%(class)s", blank=True
+    )
     title = models.CharField(max_length=250)
     details = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=3, choices=STATUS_CHOICES)
