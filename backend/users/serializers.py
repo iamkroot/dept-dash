@@ -48,11 +48,9 @@ class ResearchScholarSerializer(serializers.ModelSerializer):
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    user_serializers = (FacultySerializer, ResearchScholarSerializer, StudentSerializer)
-
     def to_representation(self, value):
         user = downcast_user_type(value)
-        for UserSerializer in self.user_serializers:
+        for UserSerializer in user_serializers:
             if isinstance(user, UserSerializer.Meta.model):
                 data = UserSerializer(user).data
                 data["type"] = user._meta.verbose_name
@@ -63,3 +61,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         exclude = ("password",)
         depth = 1
+
+
+user_serializers = (FacultySerializer, ResearchScholarSerializer, StudentSerializer)
