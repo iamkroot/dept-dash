@@ -1,18 +1,13 @@
 from rest_framework import viewsets
+
+from .filters import DeptFilterBackend
+from .models import Department, Faculty, ResearchScholar, Student
 from .serializers import (
     DepartmentSerializer,
     FacultySerializer,
-    StudentSerializer,
     ResearchScholarSerializer,
+    StudentSerializer,
 )
-from .models import Department, Faculty, Student, ResearchScholar
-
-
-class ResearchScholarView(viewsets.ModelViewSet):
-    serializer_class = ResearchScholarSerializer
-
-    def get_queryset(self):
-        return ResearchScholar.objects.filter(dept=self.request.user.dept)
 
 
 class DepartmentView(viewsets.ModelViewSet):
@@ -24,9 +19,10 @@ class DepartmentView(viewsets.ModelViewSet):
 
 class FacultyView(viewsets.ModelViewSet):
     serializer_class = FacultySerializer
+    filter_backends = [DeptFilterBackend]
 
     def get_queryset(self):
-        return Faculty.objects.filter(dept=self.request.user.dept)
+        return Faculty.objects.all()
 
 
 class StudentView(viewsets.ModelViewSet):
@@ -34,3 +30,11 @@ class StudentView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Student.objects.all()
+
+
+class ResearchScholarView(viewsets.ModelViewSet):
+    serializer_class = ResearchScholarSerializer
+    filter_backends = [DeptFilterBackend]
+
+    def get_queryset(self):
+        return ResearchScholar.objects.all()
