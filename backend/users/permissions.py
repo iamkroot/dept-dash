@@ -2,13 +2,28 @@ from rest_framework import permissions
 from users.models import Faculty, Student, ResearchScholar
 
 
+class IsReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.method in permissions.SAFE_METHODS
+
+
 class IsHoD(permissions.BasePermission):
     """
     Custom permission to only allow HoD to access.
     """
 
     def has_permission(self, request, view):
-        return request.user.groups.filter(name='hod').exists()
+        return getattr(request.user, "is_hod", False)
+
+
+class IsSelf(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return request.user == obj
+
+
+class IsHoDOrIsSelf(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return getattr(request.user, "is_hod", False) or request.user == obj
 
 
 class IsFaculty(permissions.BasePermission):
@@ -36,4 +51,3 @@ class IsStudent(permissions.BasePermission):
 
     def has_permission(self, request, view):
         return isinstance(request.user, Student)
-

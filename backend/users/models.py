@@ -46,6 +46,10 @@ class Faculty(CustomUser):
     profile_img = models.ImageField("profile picture", blank=True, null=True)
     dept = models.ForeignKey(Department, on_delete=models.CASCADE)
 
+    @property
+    def is_hod(self):
+        return self.groups.filter(name="hod").exists()
+
     class Meta:
         verbose_name = "faculty"
         verbose_name_plural = "faculties"

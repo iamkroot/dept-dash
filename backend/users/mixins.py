@@ -1,7 +1,6 @@
 from django.db.models import Q
 from django.http import Http404
 from rest_framework_extensions.mixins import NestedViewSetMixin as _NestedViewSetMixin
-# from rest_framework_extensions.settings import extensions_api_settings
 
 
 class NestedViewSetMixin(_NestedViewSetMixin):
