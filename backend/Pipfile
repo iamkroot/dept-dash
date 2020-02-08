@@ -17,3 +17,5 @@ django-celery-results = "*"
 psycopg2 = "*"
 
 [dev-packages]
+pyyaml = "*"
+uritemplate = "*"

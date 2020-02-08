@@ -1,0 +1,4053 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/publications/:
+    get:
+      operationId: listPublications
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    faculty_authors:
+                      type: array
+                      items:
+                        type: string
+                    student_authors:
+                      type: array
+                      items:
+                        type: string
+                    scholar_authors:
+                      type: array
+                      items:
+                        type: string
+                    title:
+                      type: string
+                      maxLength: 250
+                    details:
+                      type: string
+                      nullable: true
+                    status:
+                      enum:
+                      - COM
+                      - REJ
+                      - ACT
+                    pub_type:
+                      enum:
+                      - CNF
+                      - JRN
+                    pub_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    doi_number:
+                      type: string
+                      nullable: true
+                      maxLength: 255
+                    page_number:
+                      type: integer
+                      nullable: true
+                  required:
+                  - title
+                  - status
+                  - pub_type
+          description: ''
+    post:
+      operationId: createPublication
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id001
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                pub_type:
+                  enum:
+                  - CNF
+                  - JRN
+                pub_date:
+                  type: string
+                  format: date
+                  nullable: true
+                doi_number:
+                  type: string
+                  nullable: true
+                  maxLength: 255
+                page_number:
+                  type: integer
+                  nullable: true
+              required:
+              - title
+              - status
+              - pub_type
+          application/x-www-form-urlencoded:
+            schema: *id001
+          multipart/form-data:
+            schema: *id001
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+  /api/publications/{id}/:
+    get:
+      operationId: retrievePublication
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+    put:
+      operationId: updatePublication
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id002
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                pub_type:
+                  enum:
+                  - CNF
+                  - JRN
+                pub_date:
+                  type: string
+                  format: date
+                  nullable: true
+                doi_number:
+                  type: string
+                  nullable: true
+                  maxLength: 255
+                page_number:
+                  type: integer
+                  nullable: true
+              required:
+              - title
+              - status
+              - pub_type
+          application/x-www-form-urlencoded:
+            schema: *id002
+          multipart/form-data:
+            schema: *id002
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+    patch:
+      operationId: partial_updatePublication
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id003
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                pub_type:
+                  enum:
+                  - CNF
+                  - JRN
+                pub_date:
+                  type: string
+                  format: date
+                  nullable: true
+                doi_number:
+                  type: string
+                  nullable: true
+                  maxLength: 255
+                page_number:
+                  type: integer
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id003
+          multipart/form-data:
+            schema: *id003
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+    delete:
+      operationId: destroyPublication
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/projects/:
+    get:
+      operationId: listProjects
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    faculty_authors:
+                      type: array
+                      items:
+                        type: string
+                    student_authors:
+                      type: array
+                      items:
+                        type: string
+                    scholar_authors:
+                      type: array
+                      items:
+                        type: string
+                    proposed_by:
+                      type: array
+                      items:
+                        type: string
+                    title:
+                      type: string
+                      maxLength: 250
+                    details:
+                      type: string
+                      nullable: true
+                    status:
+                      enum:
+                      - COM
+                      - REJ
+                      - ACT
+                    agency:
+                      type: string
+                      maxLength: 100
+                    scheme:
+                      type: string
+                      maxLength: 50
+                    pi_copi:
+                      type: string
+                      maxLength: 100
+                    np_form:
+                      type: string
+                      format: binary
+                      nullable: true
+                    send_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    start_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    end_date:
+                      type: string
+                      format: date
+                      nullable: true
+                  required:
+                  - proposed_by
+                  - title
+                  - status
+                  - agency
+                  - scheme
+                  - pi_copi
+          description: ''
+    post:
+      operationId: createProject
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id004
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                proposed_by:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                agency:
+                  type: string
+                  maxLength: 100
+                scheme:
+                  type: string
+                  maxLength: 50
+                pi_copi:
+                  type: string
+                  maxLength: 100
+                np_form:
+                  type: string
+                  format: binary
+                  nullable: true
+                send_date:
+                  type: string
+                  format: date
+                  nullable: true
+                start_date:
+                  type: string
+                  format: date
+                  nullable: true
+                end_date:
+                  type: string
+                  format: date
+                  nullable: true
+              required:
+              - proposed_by
+              - title
+              - status
+              - agency
+              - scheme
+              - pi_copi
+          application/x-www-form-urlencoded:
+            schema: *id004
+          multipart/form-data:
+            schema: *id004
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+  /api/projects/{id}/:
+    get:
+      operationId: retrieveProject
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+    put:
+      operationId: updateProject
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id005
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                proposed_by:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                agency:
+                  type: string
+                  maxLength: 100
+                scheme:
+                  type: string
+                  maxLength: 50
+                pi_copi:
+                  type: string
+                  maxLength: 100
+                np_form:
+                  type: string
+                  format: binary
+                  nullable: true
+                send_date:
+                  type: string
+                  format: date
+                  nullable: true
+                start_date:
+                  type: string
+                  format: date
+                  nullable: true
+                end_date:
+                  type: string
+                  format: date
+                  nullable: true
+              required:
+              - proposed_by
+              - title
+              - status
+              - agency
+              - scheme
+              - pi_copi
+          application/x-www-form-urlencoded:
+            schema: *id005
+          multipart/form-data:
+            schema: *id005
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+    patch:
+      operationId: partial_updateProject
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id006
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                proposed_by:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                agency:
+                  type: string
+                  maxLength: 100
+                scheme:
+                  type: string
+                  maxLength: 50
+                pi_copi:
+                  type: string
+                  maxLength: 100
+                np_form:
+                  type: string
+                  format: binary
+                  nullable: true
+                send_date:
+                  type: string
+                  format: date
+                  nullable: true
+                start_date:
+                  type: string
+                  format: date
+                  nullable: true
+                end_date:
+                  type: string
+                  format: date
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id006
+          multipart/form-data:
+            schema: *id006
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+    delete:
+      operationId: destroyProject
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/faculties/:
+    get:
+      operationId: listFaculties
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    email:
+                      type: string
+                      readOnly: true
+                    name:
+                      type: string
+                      maxLength: 50
+                    psrn:
+                      type: integer
+                    alt_email:
+                      type: string
+                      format: email
+                      nullable: true
+                      maxLength: 254
+                    contact_num:
+                      type: string
+                      pattern: ^(((\+?91)|0)[\-\s]?)?[6-9]\d{9}$
+                      maxLength: 15
+                    dept:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 50
+                      required:
+                      - name
+                      type: object
+                      readOnly: true
+                  required:
+                  - name
+                  - psrn
+                  - contact_num
+          description: ''
+  /api/faculties/{psrn}/:
+    get:
+      operationId: retrieveFaculty
+      description: ''
+      parameters:
+      - name: psrn
+        in: path
+        required: true
+        description: A unique value identifying this faculty.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  psrn:
+                    type: integer
+                  alt_email:
+                    type: string
+                    format: email
+                    nullable: true
+                    maxLength: 254
+                  contact_num:
+                    type: string
+                    pattern: ^(((\+?91)|0)[\-\s]?)?[6-9]\d{9}$
+                    maxLength: 15
+                  dept:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 50
+                    required:
+                    - name
+                    type: object
+                    readOnly: true
+                required:
+                - name
+                - psrn
+                - contact_num
+          description: ''
+    put:
+      operationId: updateFaculty
+      description: ''
+      parameters:
+      - name: psrn
+        in: path
+        required: true
+        description: A unique value identifying this faculty.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id007
+              properties:
+                name:
+                  type: string
+                  maxLength: 50
+                psrn:
+                  type: integer
+                alt_email:
+                  type: string
+                  format: email
+                  nullable: true
+                  maxLength: 254
+                contact_num:
+                  type: string
+                  pattern: ^(((\+?91)|0)[\-\s]?)?[6-9]\d{9}$
+                  maxLength: 15
+              required:
+              - name
+              - psrn
+              - contact_num
+          application/x-www-form-urlencoded:
+            schema: *id007
+          multipart/form-data:
+            schema: *id007
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  psrn:
+                    type: integer
+                  alt_email:
+                    type: string
+                    format: email
+                    nullable: true
+                    maxLength: 254
+                  contact_num:
+                    type: string
+                    pattern: ^(((\+?91)|0)[\-\s]?)?[6-9]\d{9}$
+                    maxLength: 15
+                  dept:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 50
+                    required:
+                    - name
+                    type: object
+                    readOnly: true
+                required:
+                - name
+                - psrn
+                - contact_num
+          description: ''
+    patch:
+      operationId: partial_updateFaculty
+      description: ''
+      parameters:
+      - name: psrn
+        in: path
+        required: true
+        description: A unique value identifying this faculty.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id008
+              properties:
+                name:
+                  type: string
+                  maxLength: 50
+                psrn:
+                  type: integer
+                alt_email:
+                  type: string
+                  format: email
+                  nullable: true
+                  maxLength: 254
+                contact_num:
+                  type: string
+                  pattern: ^(((\+?91)|0)[\-\s]?)?[6-9]\d{9}$
+                  maxLength: 15
+          application/x-www-form-urlencoded:
+            schema: *id008
+          multipart/form-data:
+            schema: *id008
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  psrn:
+                    type: integer
+                  alt_email:
+                    type: string
+                    format: email
+                    nullable: true
+                    maxLength: 254
+                  contact_num:
+                    type: string
+                    pattern: ^(((\+?91)|0)[\-\s]?)?[6-9]\d{9}$
+                    maxLength: 15
+                  dept:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 50
+                    required:
+                    - name
+                    type: object
+                    readOnly: true
+                required:
+                - name
+                - psrn
+                - contact_num
+          description: ''
+  /api/faculties/{parent_lookup_faculty_authors__or__proposed_by}/publications/:
+    get:
+      operationId: listPublications
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    faculty_authors:
+                      type: array
+                      items:
+                        type: string
+                    student_authors:
+                      type: array
+                      items:
+                        type: string
+                    scholar_authors:
+                      type: array
+                      items:
+                        type: string
+                    title:
+                      type: string
+                      maxLength: 250
+                    details:
+                      type: string
+                      nullable: true
+                    status:
+                      enum:
+                      - COM
+                      - REJ
+                      - ACT
+                    pub_type:
+                      enum:
+                      - CNF
+                      - JRN
+                    pub_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    doi_number:
+                      type: string
+                      nullable: true
+                      maxLength: 255
+                    page_number:
+                      type: integer
+                      nullable: true
+                  required:
+                  - title
+                  - status
+                  - pub_type
+          description: ''
+    post:
+      operationId: createPublication
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id009
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                pub_type:
+                  enum:
+                  - CNF
+                  - JRN
+                pub_date:
+                  type: string
+                  format: date
+                  nullable: true
+                doi_number:
+                  type: string
+                  nullable: true
+                  maxLength: 255
+                page_number:
+                  type: integer
+                  nullable: true
+              required:
+              - title
+              - status
+              - pub_type
+          application/x-www-form-urlencoded:
+            schema: *id009
+          multipart/form-data:
+            schema: *id009
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+  /api/faculties/{parent_lookup_faculty_authors__or__proposed_by}/publications/{id}/:
+    get:
+      operationId: retrievePublication
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+    put:
+      operationId: updatePublication
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id010
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                pub_type:
+                  enum:
+                  - CNF
+                  - JRN
+                pub_date:
+                  type: string
+                  format: date
+                  nullable: true
+                doi_number:
+                  type: string
+                  nullable: true
+                  maxLength: 255
+                page_number:
+                  type: integer
+                  nullable: true
+              required:
+              - title
+              - status
+              - pub_type
+          application/x-www-form-urlencoded:
+            schema: *id010
+          multipart/form-data:
+            schema: *id010
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+    patch:
+      operationId: partial_updatePublication
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id011
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                pub_type:
+                  enum:
+                  - CNF
+                  - JRN
+                pub_date:
+                  type: string
+                  format: date
+                  nullable: true
+                doi_number:
+                  type: string
+                  nullable: true
+                  maxLength: 255
+                page_number:
+                  type: integer
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id011
+          multipart/form-data:
+            schema: *id011
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+    delete:
+      operationId: destroyPublication
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/faculties/{parent_lookup_faculty_authors__or__proposed_by}/projects/:
+    get:
+      operationId: listProjects
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    faculty_authors:
+                      type: array
+                      items:
+                        type: string
+                    student_authors:
+                      type: array
+                      items:
+                        type: string
+                    scholar_authors:
+                      type: array
+                      items:
+                        type: string
+                    proposed_by:
+                      type: array
+                      items:
+                        type: string
+                    title:
+                      type: string
+                      maxLength: 250
+                    details:
+                      type: string
+                      nullable: true
+                    status:
+                      enum:
+                      - COM
+                      - REJ
+                      - ACT
+                    agency:
+                      type: string
+                      maxLength: 100
+                    scheme:
+                      type: string
+                      maxLength: 50
+                    pi_copi:
+                      type: string
+                      maxLength: 100
+                    np_form:
+                      type: string
+                      format: binary
+                      nullable: true
+                    send_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    start_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    end_date:
+                      type: string
+                      format: date
+                      nullable: true
+                  required:
+                  - proposed_by
+                  - title
+                  - status
+                  - agency
+                  - scheme
+                  - pi_copi
+          description: ''
+    post:
+      operationId: createProject
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id012
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                proposed_by:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                agency:
+                  type: string
+                  maxLength: 100
+                scheme:
+                  type: string
+                  maxLength: 50
+                pi_copi:
+                  type: string
+                  maxLength: 100
+                np_form:
+                  type: string
+                  format: binary
+                  nullable: true
+                send_date:
+                  type: string
+                  format: date
+                  nullable: true
+                start_date:
+                  type: string
+                  format: date
+                  nullable: true
+                end_date:
+                  type: string
+                  format: date
+                  nullable: true
+              required:
+              - proposed_by
+              - title
+              - status
+              - agency
+              - scheme
+              - pi_copi
+          application/x-www-form-urlencoded:
+            schema: *id012
+          multipart/form-data:
+            schema: *id012
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+  /api/faculties/{parent_lookup_faculty_authors__or__proposed_by}/projects/{id}/:
+    get:
+      operationId: retrieveProject
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+    put:
+      operationId: updateProject
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id013
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                proposed_by:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                agency:
+                  type: string
+                  maxLength: 100
+                scheme:
+                  type: string
+                  maxLength: 50
+                pi_copi:
+                  type: string
+                  maxLength: 100
+                np_form:
+                  type: string
+                  format: binary
+                  nullable: true
+                send_date:
+                  type: string
+                  format: date
+                  nullable: true
+                start_date:
+                  type: string
+                  format: date
+                  nullable: true
+                end_date:
+                  type: string
+                  format: date
+                  nullable: true
+              required:
+              - proposed_by
+              - title
+              - status
+              - agency
+              - scheme
+              - pi_copi
+          application/x-www-form-urlencoded:
+            schema: *id013
+          multipart/form-data:
+            schema: *id013
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+    patch:
+      operationId: partial_updateProject
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id014
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                proposed_by:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                agency:
+                  type: string
+                  maxLength: 100
+                scheme:
+                  type: string
+                  maxLength: 50
+                pi_copi:
+                  type: string
+                  maxLength: 100
+                np_form:
+                  type: string
+                  format: binary
+                  nullable: true
+                send_date:
+                  type: string
+                  format: date
+                  nullable: true
+                start_date:
+                  type: string
+                  format: date
+                  nullable: true
+                end_date:
+                  type: string
+                  format: date
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id014
+          multipart/form-data:
+            schema: *id014
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+    delete:
+      operationId: destroyProject
+      description: ''
+      parameters:
+      - name: parent_lookup_faculty_authors__or__proposed_by
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/scholars/:
+    get:
+      operationId: listResearchScholars
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    email:
+                      type: string
+                      readOnly: true
+                    name:
+                      type: string
+                      maxLength: 50
+                    id_num:
+                      type: string
+                      maxLength: 15
+                    tenure_type:
+                      enum:
+                      - FT
+                      - PT
+                      - AS
+                    fellowship:
+                      enum:
+                      - NONE
+                      - INST
+                      - INDS
+                      - PROJ
+                    joining_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    proposal_approval_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    qualifier_passing_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    supervisor:
+                      properties:
+                        email:
+                          type: string
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 50
+                        psrn:
+                          type: integer
+                        alt_email:
+                          type: string
+                          format: email
+                          nullable: true
+                          maxLength: 254
+                        contact_num:
+                          type: string
+                          pattern: ^(((\+?91)|0)[\-\s]?)?[6-9]\d{9}$
+                          maxLength: 15
+                        dept:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 50
+                          required:
+                          - name
+                          type: object
+                          readOnly: true
+                      required:
+                      - name
+                      - psrn
+                      - contact_num
+                      type: object
+                      readOnly: true
+                    dept:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 50
+                      required:
+                      - name
+                      type: object
+                      readOnly: true
+                  required:
+                  - name
+                  - id_num
+                  - tenure_type
+                  - fellowship
+          description: ''
+  /api/scholars/{id_num}/:
+    get:
+      operationId: retrieveResearchScholar
+      description: ''
+      parameters:
+      - name: id_num
+        in: path
+        required: true
+        description: A unique value identifying this research scholar.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  id_num:
+                    type: string
+                    maxLength: 15
+                  tenure_type:
+                    enum:
+                    - FT
+                    - PT
+                    - AS
+                  fellowship:
+                    enum:
+                    - NONE
+                    - INST
+                    - INDS
+                    - PROJ
+                  joining_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  proposal_approval_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  qualifier_passing_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  supervisor:
+                    properties:
+                      email:
+                        type: string
+                        readOnly: true
+                      name:
+                        type: string
+                        maxLength: 50
+                      psrn:
+                        type: integer
+                      alt_email:
+                        type: string
+                        format: email
+                        nullable: true
+                        maxLength: 254
+                      contact_num:
+                        type: string
+                        pattern: ^(((\+?91)|0)[\-\s]?)?[6-9]\d{9}$
+                        maxLength: 15
+                      dept:
+                        properties:
+                          name:
+                            type: string
+                            maxLength: 50
+                        required:
+                        - name
+                        type: object
+                        readOnly: true
+                    required:
+                    - name
+                    - psrn
+                    - contact_num
+                    type: object
+                    readOnly: true
+                  dept:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 50
+                    required:
+                    - name
+                    type: object
+                    readOnly: true
+                required:
+                - name
+                - id_num
+                - tenure_type
+                - fellowship
+          description: ''
+    put:
+      operationId: updateResearchScholar
+      description: ''
+      parameters:
+      - name: id_num
+        in: path
+        required: true
+        description: A unique value identifying this research scholar.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id015
+              properties:
+                name:
+                  type: string
+                  maxLength: 50
+                id_num:
+                  type: string
+                  maxLength: 15
+                tenure_type:
+                  enum:
+                  - FT
+                  - PT
+                  - AS
+                fellowship:
+                  enum:
+                  - NONE
+                  - INST
+                  - INDS
+                  - PROJ
+                joining_date:
+                  type: string
+                  format: date
+                  nullable: true
+                proposal_approval_date:
+                  type: string
+                  format: date
+                  nullable: true
+                qualifier_passing_date:
+                  type: string
+                  format: date
+                  nullable: true
+              required:
+              - name
+              - id_num
+              - tenure_type
+              - fellowship
+          application/x-www-form-urlencoded:
+            schema: *id015
+          multipart/form-data:
+            schema: *id015
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  id_num:
+                    type: string
+                    maxLength: 15
+                  tenure_type:
+                    enum:
+                    - FT
+                    - PT
+                    - AS
+                  fellowship:
+                    enum:
+                    - NONE
+                    - INST
+                    - INDS
+                    - PROJ
+                  joining_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  proposal_approval_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  qualifier_passing_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  supervisor:
+                    properties:
+                      email:
+                        type: string
+                        readOnly: true
+                      name:
+                        type: string
+                        maxLength: 50
+                      psrn:
+                        type: integer
+                      alt_email:
+                        type: string
+                        format: email
+                        nullable: true
+                        maxLength: 254
+                      contact_num:
+                        type: string
+                        pattern: ^(((\+?91)|0)[\-\s]?)?[6-9]\d{9}$
+                        maxLength: 15
+                      dept:
+                        properties:
+                          name:
+                            type: string
+                            maxLength: 50
+                        required:
+                        - name
+                        type: object
+                        readOnly: true
+                    required:
+                    - name
+                    - psrn
+                    - contact_num
+                    type: object
+                    readOnly: true
+                  dept:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 50
+                    required:
+                    - name
+                    type: object
+                    readOnly: true
+                required:
+                - name
+                - id_num
+                - tenure_type
+                - fellowship
+          description: ''
+    patch:
+      operationId: partial_updateResearchScholar
+      description: ''
+      parameters:
+      - name: id_num
+        in: path
+        required: true
+        description: A unique value identifying this research scholar.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id016
+              properties:
+                name:
+                  type: string
+                  maxLength: 50
+                id_num:
+                  type: string
+                  maxLength: 15
+                tenure_type:
+                  enum:
+                  - FT
+                  - PT
+                  - AS
+                fellowship:
+                  enum:
+                  - NONE
+                  - INST
+                  - INDS
+                  - PROJ
+                joining_date:
+                  type: string
+                  format: date
+                  nullable: true
+                proposal_approval_date:
+                  type: string
+                  format: date
+                  nullable: true
+                qualifier_passing_date:
+                  type: string
+                  format: date
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id016
+          multipart/form-data:
+            schema: *id016
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  id_num:
+                    type: string
+                    maxLength: 15
+                  tenure_type:
+                    enum:
+                    - FT
+                    - PT
+                    - AS
+                  fellowship:
+                    enum:
+                    - NONE
+                    - INST
+                    - INDS
+                    - PROJ
+                  joining_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  proposal_approval_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  qualifier_passing_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  supervisor:
+                    properties:
+                      email:
+                        type: string
+                        readOnly: true
+                      name:
+                        type: string
+                        maxLength: 50
+                      psrn:
+                        type: integer
+                      alt_email:
+                        type: string
+                        format: email
+                        nullable: true
+                        maxLength: 254
+                      contact_num:
+                        type: string
+                        pattern: ^(((\+?91)|0)[\-\s]?)?[6-9]\d{9}$
+                        maxLength: 15
+                      dept:
+                        properties:
+                          name:
+                            type: string
+                            maxLength: 50
+                        required:
+                        - name
+                        type: object
+                        readOnly: true
+                    required:
+                    - name
+                    - psrn
+                    - contact_num
+                    type: object
+                    readOnly: true
+                  dept:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 50
+                    required:
+                    - name
+                    type: object
+                    readOnly: true
+                required:
+                - name
+                - id_num
+                - tenure_type
+                - fellowship
+          description: ''
+  /api/scholars/{parent_lookup_scholar_authors}/publications/:
+    get:
+      operationId: listPublications
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    faculty_authors:
+                      type: array
+                      items:
+                        type: string
+                    student_authors:
+                      type: array
+                      items:
+                        type: string
+                    scholar_authors:
+                      type: array
+                      items:
+                        type: string
+                    title:
+                      type: string
+                      maxLength: 250
+                    details:
+                      type: string
+                      nullable: true
+                    status:
+                      enum:
+                      - COM
+                      - REJ
+                      - ACT
+                    pub_type:
+                      enum:
+                      - CNF
+                      - JRN
+                    pub_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    doi_number:
+                      type: string
+                      nullable: true
+                      maxLength: 255
+                    page_number:
+                      type: integer
+                      nullable: true
+                  required:
+                  - title
+                  - status
+                  - pub_type
+          description: ''
+    post:
+      operationId: createPublication
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id017
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                pub_type:
+                  enum:
+                  - CNF
+                  - JRN
+                pub_date:
+                  type: string
+                  format: date
+                  nullable: true
+                doi_number:
+                  type: string
+                  nullable: true
+                  maxLength: 255
+                page_number:
+                  type: integer
+                  nullable: true
+              required:
+              - title
+              - status
+              - pub_type
+          application/x-www-form-urlencoded:
+            schema: *id017
+          multipart/form-data:
+            schema: *id017
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+  /api/scholars/{parent_lookup_scholar_authors}/publications/{id}/:
+    get:
+      operationId: retrievePublication
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+    put:
+      operationId: updatePublication
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id018
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                pub_type:
+                  enum:
+                  - CNF
+                  - JRN
+                pub_date:
+                  type: string
+                  format: date
+                  nullable: true
+                doi_number:
+                  type: string
+                  nullable: true
+                  maxLength: 255
+                page_number:
+                  type: integer
+                  nullable: true
+              required:
+              - title
+              - status
+              - pub_type
+          application/x-www-form-urlencoded:
+            schema: *id018
+          multipart/form-data:
+            schema: *id018
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+    patch:
+      operationId: partial_updatePublication
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id019
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                pub_type:
+                  enum:
+                  - CNF
+                  - JRN
+                pub_date:
+                  type: string
+                  format: date
+                  nullable: true
+                doi_number:
+                  type: string
+                  nullable: true
+                  maxLength: 255
+                page_number:
+                  type: integer
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id019
+          multipart/form-data:
+            schema: *id019
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  pub_type:
+                    enum:
+                    - CNF
+                    - JRN
+                  pub_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  doi_number:
+                    type: string
+                    nullable: true
+                    maxLength: 255
+                  page_number:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - status
+                - pub_type
+          description: ''
+    delete:
+      operationId: destroyPublication
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this publication.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/scholars/{parent_lookup_scholar_authors}/projects/:
+    get:
+      operationId: listProjects
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    faculty_authors:
+                      type: array
+                      items:
+                        type: string
+                    student_authors:
+                      type: array
+                      items:
+                        type: string
+                    scholar_authors:
+                      type: array
+                      items:
+                        type: string
+                    proposed_by:
+                      type: array
+                      items:
+                        type: string
+                    title:
+                      type: string
+                      maxLength: 250
+                    details:
+                      type: string
+                      nullable: true
+                    status:
+                      enum:
+                      - COM
+                      - REJ
+                      - ACT
+                    agency:
+                      type: string
+                      maxLength: 100
+                    scheme:
+                      type: string
+                      maxLength: 50
+                    pi_copi:
+                      type: string
+                      maxLength: 100
+                    np_form:
+                      type: string
+                      format: binary
+                      nullable: true
+                    send_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    start_date:
+                      type: string
+                      format: date
+                      nullable: true
+                    end_date:
+                      type: string
+                      format: date
+                      nullable: true
+                  required:
+                  - proposed_by
+                  - title
+                  - status
+                  - agency
+                  - scheme
+                  - pi_copi
+          description: ''
+    post:
+      operationId: createProject
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id020
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                proposed_by:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                agency:
+                  type: string
+                  maxLength: 100
+                scheme:
+                  type: string
+                  maxLength: 50
+                pi_copi:
+                  type: string
+                  maxLength: 100
+                np_form:
+                  type: string
+                  format: binary
+                  nullable: true
+                send_date:
+                  type: string
+                  format: date
+                  nullable: true
+                start_date:
+                  type: string
+                  format: date
+                  nullable: true
+                end_date:
+                  type: string
+                  format: date
+                  nullable: true
+              required:
+              - proposed_by
+              - title
+              - status
+              - agency
+              - scheme
+              - pi_copi
+          application/x-www-form-urlencoded:
+            schema: *id020
+          multipart/form-data:
+            schema: *id020
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+  /api/scholars/{parent_lookup_scholar_authors}/projects/{id}/:
+    get:
+      operationId: retrieveProject
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+    put:
+      operationId: updateProject
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id021
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                proposed_by:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                agency:
+                  type: string
+                  maxLength: 100
+                scheme:
+                  type: string
+                  maxLength: 50
+                pi_copi:
+                  type: string
+                  maxLength: 100
+                np_form:
+                  type: string
+                  format: binary
+                  nullable: true
+                send_date:
+                  type: string
+                  format: date
+                  nullable: true
+                start_date:
+                  type: string
+                  format: date
+                  nullable: true
+                end_date:
+                  type: string
+                  format: date
+                  nullable: true
+              required:
+              - proposed_by
+              - title
+              - status
+              - agency
+              - scheme
+              - pi_copi
+          application/x-www-form-urlencoded:
+            schema: *id021
+          multipart/form-data:
+            schema: *id021
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+    patch:
+      operationId: partial_updateProject
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id022
+              properties:
+                faculty_authors:
+                  type: array
+                  items:
+                    type: string
+                student_authors:
+                  type: array
+                  items:
+                    type: string
+                scholar_authors:
+                  type: array
+                  items:
+                    type: string
+                proposed_by:
+                  type: array
+                  items:
+                    type: string
+                title:
+                  type: string
+                  maxLength: 250
+                details:
+                  type: string
+                  nullable: true
+                status:
+                  enum:
+                  - COM
+                  - REJ
+                  - ACT
+                agency:
+                  type: string
+                  maxLength: 100
+                scheme:
+                  type: string
+                  maxLength: 50
+                pi_copi:
+                  type: string
+                  maxLength: 100
+                np_form:
+                  type: string
+                  format: binary
+                  nullable: true
+                send_date:
+                  type: string
+                  format: date
+                  nullable: true
+                start_date:
+                  type: string
+                  format: date
+                  nullable: true
+                end_date:
+                  type: string
+                  format: date
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id022
+          multipart/form-data:
+            schema: *id022
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  faculty_authors:
+                    type: array
+                    items:
+                      type: string
+                  student_authors:
+                    type: array
+                    items:
+                      type: string
+                  scholar_authors:
+                    type: array
+                    items:
+                      type: string
+                  proposed_by:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                    maxLength: 250
+                  details:
+                    type: string
+                    nullable: true
+                  status:
+                    enum:
+                    - COM
+                    - REJ
+                    - ACT
+                  agency:
+                    type: string
+                    maxLength: 100
+                  scheme:
+                    type: string
+                    maxLength: 50
+                  pi_copi:
+                    type: string
+                    maxLength: 100
+                  np_form:
+                    type: string
+                    format: binary
+                    nullable: true
+                  send_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  start_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - proposed_by
+                - title
+                - status
+                - agency
+                - scheme
+                - pi_copi
+          description: ''
+    delete:
+      operationId: destroyProject
+      description: ''
+      parameters:
+      - name: parent_lookup_scholar_authors
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/auth/{backend}/:
+    post:
+      operationId: Createexchange_token
+      description: Accept the Google OAuth Token from client flow and authenticate
+        user.
+      parameters:
+      - name: backend
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''

@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
+from django.views.generic import TemplateView
 from research import urls as research_urls
 from users import urls as users_urls
 from auth.views import exchange_token
@@ -27,4 +28,5 @@ urlpatterns = [
     url(r"^api/", include(research_urls)),
     url(r"^api/", include(users_urls)),
     url(r'^api/auth/(?P<backend>[^/]+)/', exchange_token),
+    path('docs/', TemplateView.as_view(template_name='redoc.html'), name='docs'),
 ]
