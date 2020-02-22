@@ -13,13 +13,13 @@ class ResearchWork(models.Model):
         (ACCEPTED, "accepted"),
     ]
     faculty_authors = models.ManyToManyField(
-        Faculty, related_name="%(class)s", blank=True
+        Faculty, related_name="%(class)ss", blank=True
     )
     student_authors = models.ManyToManyField(
-        Student, related_name="%(class)s", blank=True
+        Student, related_name="%(class)ss", blank=True
     )
     scholar_authors = models.ManyToManyField(
-        ResearchScholar, related_name="%(class)s", blank=True
+        ResearchScholar, related_name="%(class)ss", blank=True
     )
     title = models.CharField(max_length=250)
     details = models.TextField(null=True, blank=True)
@@ -50,7 +50,7 @@ class Publication(ResearchWork):
 
 
 class Project(ResearchWork):
-    proposed_by = models.ManyToManyField(Faculty)
+    proposed_by = models.ManyToManyField(Faculty, related_name="proposed_projects")
     agency = models.CharField(max_length=100)
     scheme = models.CharField(max_length=50)
     pi_copi = models.CharField(
