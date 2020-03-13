@@ -9,7 +9,7 @@ faculty_routes.register(
     r'publications',
     PublicationView,
     basename="faculty-publication",
-    parents_query_lookups=["faculty_authors__or__proposed_by"]
+    parents_query_lookups=["faculty_authors"]
 )
 faculty_routes.register(
     r'projects',

@@ -17,7 +17,7 @@ class NestedViewSetMixin(_NestedViewSetMixin):
                 else:
                     query &= Q(**{lookup: value})
             try:
-                return queryset.filter(query)
+                return queryset.filter(query).distinct()
             except ValueError:
                 raise Http404
         else:
