@@ -11,12 +11,17 @@ class DepartmentSerializer(serializers.ModelSerializer):
 
 
 class FacultySerializer(serializers.ModelSerializer):
-    dept = DepartmentSerializer(read_only=True)
 
     class Meta:
         model = Faculty
-        fields = ("email", "name", "psrn", "alt_email", "contact_num", "dept")
+        fields = ("email", "name", "psrn", "alt_email", "contact_num")
         depth = 1
+
+
+class FacultyBasicSerializer(serializers.ModelSerializer):
+
+    class Meta (FacultySerializer.Meta):
+        depth = 0
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -28,7 +33,6 @@ class StudentSerializer(serializers.ModelSerializer):
 
 class ResearchScholarSerializer(serializers.ModelSerializer):
     supervisor = FacultySerializer(read_only=True)
-    dept = DepartmentSerializer(read_only=True)
 
     class Meta:
         model = ResearchScholar
@@ -45,6 +49,13 @@ class ResearchScholarSerializer(serializers.ModelSerializer):
             "dept",
         )
         depth = 1
+
+
+class ResearchScholarBasicSerializer(serializers.ModelSerializer):
+    supervisor = serializers.PrimaryKeyRelatedField(read_only=True)
+
+    class Meta(ResearchScholarSerializer.Meta):
+        depth = 0
 
 
 class CustomUserSerializer(serializers.ModelSerializer):

@@ -5,7 +5,9 @@ from .permissions import IsHoD
 from .serializers import (
     DepartmentSerializer,
     FacultySerializer,
+    FacultyBasicSerializer,
     ResearchScholarSerializer,
+    ResearchScholarBasicSerializer,
     StudentSerializer,
 )
 from .viewsets import UserViewset
@@ -27,6 +29,12 @@ class FacultyView(UserViewset):
     serializer_class = FacultySerializer
     filter_backends = [DeptFilterBackend]
 
+    def get_serializer_class(self):
+        if getattr(self.request.user, "is_hod", False):
+            return FacultySerializer
+        else:
+            return FacultyBasicSerializer
+
 
 class StudentView(UserViewset):
     queryset = Student.objects.all()
@@ -37,3 +45,9 @@ class ResearchScholarView(UserViewset):
     queryset = ResearchScholar.objects.all()
     serializer_class = ResearchScholarSerializer
     filter_backends = [DeptFilterBackend]
+
+    def get_serializer_class(self):
+        if getattr(self.request.user, "is_hod", False):
+            return ResearchScholarSerializer
+        else:
+            return ResearchScholarBasicSerializer
