@@ -30,7 +30,7 @@ class FacultyView(UserViewset):
     filter_backends = [DeptFilterBackend]
 
     def get_serializer_class(self):
-        if getattr(self.request.user, "is_hod", False):
+        if getattr(self.request.user, "is_hod", False) or self.action != "list":
             return FacultySerializer
         else:
             return FacultyBasicSerializer
@@ -47,7 +47,7 @@ class ResearchScholarView(UserViewset):
     filter_backends = [DeptFilterBackend]
 
     def get_serializer_class(self):
-        if getattr(self.request.user, "is_hod", False):
+        if getattr(self.request.user, "is_hod", False) or self.action != "list":
             return ResearchScholarSerializer
         else:
             return ResearchScholarBasicSerializer

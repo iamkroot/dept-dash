@@ -26,6 +26,11 @@ class IsHoDOrIsSelf(permissions.BasePermission):
         return getattr(request.user, "is_hod", False) or request.user == obj
 
 
+class IsFacultyOrIsSelf(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return isinstance(request.user, Faculty) or request.user == obj
+
+
 class IsFaculty(permissions.BasePermission):
     """
     Custom permission to only allow faculty to access.
