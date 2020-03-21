@@ -1,0 +1,398 @@
+[
+{
+    "model": "users.department",
+    "pk": 1,
+    "fields": {
+        "name": "Computer Science"
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+        "name": "hod",
+        "permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": "admin@example.com",
+    "fields": {
+        "password": "pbkdf2_sha256$180000$XfbYm29N6C7b$FJO0Z6ZB2y6jJHLf4BrzABr9jEbuRfA5kNO2HkALFwQ=",
+        "last_login": "2020-03-21T15:29:30.486Z",
+        "is_superuser": true,
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2020-03-20T03:49:16.546Z",
+        "name": "admin",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": "f20170082@hyderabad.bits-pilani.ac.in",
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-20T03:52:28.487Z",
+        "name": "Rashi Jain",
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": "f20170093@hyderabad.bits-pilani.ac.in",
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-20T03:59:08.300Z",
+        "name": "Shreeya Nelekar",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": "f20170124@hyderabad.bits-pilani.ac.in",
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-20T03:57:19.316Z",
+        "name": "Pranjal Gupta",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": "f20170218@hyderabad.bits-pilani.ac.in",
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-20T03:53:05.256Z",
+        "name": "Daksh Yashlaha",
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": "f20170325@hyderabad.bits-pilani.ac.in",
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-20T03:54:39.317Z",
+        "name": "Nihal Jain",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": "f20170703@hyderabad.bits-pilani.ac.in",
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-20T03:54:06.487Z",
+        "name": "B Raghunathan",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": "f20170184@hyderabad.bits-pilani.ac.in",
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-20T03:53:18.644Z",
+        "name": "Krut Patel",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": "f20171715@hyderabad.bits-pilani.ac.in",
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-20T03:57:59.495Z",
+        "name": "Prakhar Goenka",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.faculty",
+    "pk": 1,
+    "fields": {
+        "customuser_ptr": "f20170082@hyderabad.bits-pilani.ac.in",
+        "alt_email": null,
+        "contact_num": "9876543210",
+        "address": "",
+        "profile_img": "",
+        "dept": 1
+    }
+},
+{
+    "model": "users.faculty",
+    "pk": 2,
+    "fields": {
+        "customuser_ptr": "f20170218@hyderabad.bits-pilani.ac.in",
+        "alt_email": null,
+        "contact_num": "9876543210",
+        "address": "",
+        "profile_img": "",
+        "dept": 1
+    }
+},
+{
+    "model": "users.faculty",
+    "pk": 3,
+    "fields": {
+        "customuser_ptr": "f20170184@hyderabad.bits-pilani.ac.in",
+        "alt_email": null,
+        "contact_num": "9876543210",
+        "address": "",
+        "profile_img": "",
+        "dept": 1
+    }
+},
+{
+    "model": "users.student",
+    "pk": "2017A7PS0093H",
+    "fields": {
+        "customuser_ptr": "f20170093@hyderabad.bits-pilani.ac.in"
+    }
+},
+{
+    "model": "users.student",
+    "pk": "2017A7PS0124H",
+    "fields": {
+        "customuser_ptr": "f20170124@hyderabad.bits-pilani.ac.in"
+    }
+},
+{
+    "model": "users.student",
+    "pk": "2017A7PS1715H",
+    "fields": {
+        "customuser_ptr": "f20171715@hyderabad.bits-pilani.ac.in"
+    }
+},
+{
+    "model": "users.researchscholar",
+    "pk": "2017A7PS0325H",
+    "fields": {
+        "customuser_ptr": "f20170325@hyderabad.bits-pilani.ac.in",
+        "tenure_type": "FT",
+        "fellowship": "INDS",
+        "fellowship_details": "",
+        "joining_date": null,
+        "proposal_approval_date": null,
+        "qualifier_passing_date": null,
+        "graduation_date": null,
+        "supervisor": 2,
+        "co_supervisor": "",
+        "dept": 1
+    }
+},
+{
+    "model": "users.researchscholar",
+    "pk": "2017A7PS0703H",
+    "fields": {
+        "customuser_ptr": "f20170703@hyderabad.bits-pilani.ac.in",
+        "tenure_type": "FT",
+        "fellowship": "INST",
+        "fellowship_details": "",
+        "joining_date": null,
+        "proposal_approval_date": null,
+        "qualifier_passing_date": null,
+        "graduation_date": null,
+        "supervisor": 1,
+        "co_supervisor": "",
+        "dept": 1
+    }
+},
+{
+    "model": "research.publication",
+    "pk": 1,
+    "fields": {
+        "title": "Using GANs for deepfakes detection",
+        "details": "",
+        "status": "ACT",
+        "pub_type": "CNF",
+        "pub_date": null,
+        "doi_number": null,
+        "page_number": null,
+        "faculty_authors": [
+            1,
+            2
+        ],
+        "student_authors": [
+            "2017A7PS0093H",
+            "2017A7PS0124H"
+        ],
+        "scholar_authors": [
+            "2017A7PS0703H"
+        ]
+    }
+},
+{
+    "model": "research.publication",
+    "pk": 2,
+    "fields": {
+        "title": "Software Quality tests",
+        "details": "",
+        "status": "REJ",
+        "pub_type": "CNF",
+        "pub_date": null,
+        "doi_number": null,
+        "page_number": null,
+        "faculty_authors": [
+            2
+        ],
+        "student_authors": [
+            "2017A7PS1715H"
+        ],
+        "scholar_authors": [
+            "2017A7PS0703H"
+        ]
+    }
+},
+{
+    "model": "research.publication",
+    "pk": 3,
+    "fields": {
+        "title": "Network Programming",
+        "details": "",
+        "status": "COM",
+        "pub_type": "CNF",
+        "pub_date": null,
+        "doi_number": null,
+        "page_number": null,
+        "faculty_authors": [
+            2,
+            3
+        ],
+        "student_authors": [
+            "2017A7PS0124H"
+        ],
+        "scholar_authors": []
+    }
+},
+{
+    "model": "research.project",
+    "pk": 1,
+    "fields": {
+        "title": "Convex Hull Optimization Algorithm",
+        "details": "",
+        "status": "COM",
+        "agency": "IEEE",
+        "scheme": "NA",
+        "pi_copi": "NA",
+        "np_form": "",
+        "send_date": null,
+        "start_date": null,
+        "end_date": null,
+        "faculty_authors": [
+            1
+        ],
+        "student_authors": [
+            "2017A7PS0093H",
+            "2017A7PS1715H"
+        ],
+        "scholar_authors": [
+            "2017A7PS0325H"
+        ],
+        "proposed_by": [
+            1
+        ]
+    }
+},
+{
+    "model": "research.project",
+    "pk": 2,
+    "fields": {
+        "title": "Automatic Code Generation using Neural Networks",
+        "details": "",
+        "status": "ACT",
+        "agency": "IEEE",
+        "scheme": "NA",
+        "pi_copi": "NA",
+        "np_form": "",
+        "send_date": null,
+        "start_date": null,
+        "end_date": null,
+        "faculty_authors": [
+            2,
+            3
+        ],
+        "student_authors": [
+            "2017A7PS0124H"
+        ],
+        "scholar_authors": [
+            "2017A7PS0703H"
+        ],
+        "proposed_by": [
+            1
+        ]
+    }
+},
+{
+    "model": "research.project",
+    "pk": 3,
+    "fields": {
+        "title": "Code Quality Testing of Software Products",
+        "details": "",
+        "status": "COM",
+        "agency": "IEEE",
+        "scheme": "NA",
+        "pi_copi": "NA",
+        "np_form": "",
+        "send_date": null,
+        "start_date": null,
+        "end_date": null,
+        "faculty_authors": [
+            3
+        ],
+        "student_authors": [
+            "2017A7PS0124H"
+        ],
+        "scholar_authors": [],
+        "proposed_by": [
+            3
+        ]
+    }
+}
+]
