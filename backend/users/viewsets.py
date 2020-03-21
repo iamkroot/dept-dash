@@ -1,5 +1,5 @@
 from rest_framework import viewsets, mixins
-from .permissions import IsHoD, IsSelf, IsHoDOrIsSelf
+from .permissions import IsHoD, IsFaculty, IsSelf, IsHoDOrIsSelf
 
 
 class UserViewset(
@@ -11,7 +11,7 @@ class UserViewset(
     def get_permissions(self):
         permission_classes = []
         if self.action == "list":
-            permission_classes = [IsHoD]
+            permission_classes = [IsHoD | IsFaculty]
         elif self.action == "retrieve":
             permission_classes = [IsHoDOrIsSelf]
         else:  # update actions
