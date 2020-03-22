@@ -5,7 +5,6 @@ from .permissions import IsHoD
 from .serializers import (
     DepartmentSerializer,
     FacultySerializer,
-    FacultyBasicSerializer,
     ResearchScholarSerializer,
     ResearchScholarBasicSerializer,
     StudentSerializer,
@@ -28,12 +27,6 @@ class FacultyView(UserViewset):
     queryset = Faculty.objects.all()
     serializer_class = FacultySerializer
     filter_backends = [DeptFilterBackend]
-
-    def get_serializer_class(self):
-        if getattr(self.request.user, "is_hod", False) or self.action != "list":
-            return FacultySerializer
-        else:
-            return FacultyBasicSerializer
 
 
 class StudentView(UserViewset):

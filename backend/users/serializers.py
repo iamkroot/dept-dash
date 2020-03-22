@@ -15,20 +15,12 @@ class FacultySerializer(serializers.ModelSerializer):
     class Meta:
         model = Faculty
         fields = ("email", "name", "psrn", "alt_email", "contact_num")
-        depth = 1
-
-
-class FacultyBasicSerializer(serializers.ModelSerializer):
-
-    class Meta (FacultySerializer.Meta):
-        depth = 0
 
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = ("email", "name", "id_num")
-        depth = 1
 
 
 class ResearchScholarSerializer(serializers.ModelSerializer):
