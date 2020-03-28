@@ -10,17 +10,16 @@ class BaseTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()
-        cls.faculty_user = Faculty.objects.get(psrn=3)
-        faculty_user_token = get_token_for_user(cls.faculty_user)
-        cls.faculty_client = APIClient()
-        cls.faculty_client.credentials(
-            HTTP_AUTHORIZATION=f"Bearer {faculty_user_token}"
-        )
-
-        cls.hod_user = Faculty.objects.get(psrn=2)
-        hod_user_token = get_token_for_user(cls.hod_user)
-        cls.hod_client = APIClient()
-        cls.hod_client.credentials(HTTP_AUTHORIZATION=f"Bearer {hod_user_token}")
+        for faculty in Faculty.objects.all():
+            token = get_token_for_user(faculty)
+            client = APIClient()
+            client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
+            if faculty.is_hod:
+                cls.hod = faculty
+                cls.hod_client = client
+            else:
+                setattr(cls, f"faculty_{faculty.psrn}", faculty)
+                setattr(cls, f"faculty_{faculty.psrn}_client", client)
 
         cls.scholar_user = ResearchScholar.objects.get(id_num="2017A7PS0703H")
         scholar_user_token = get_token_for_user(cls.scholar_user)
@@ -34,7 +33,7 @@ class FacultyViewTest(BaseTestCase):
     fixtures = ["fixtures.json"]
 
     def test_faculty_can_see_list(self):
-        resp = self.faculty_client.get(reverse("faculty-list"))
+        resp = self.faculty_3_client.get(reverse("faculty-list"))
         data = resp.json()
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(len(data), 3)
@@ -43,7 +42,7 @@ class FacultyViewTest(BaseTestCase):
         )
 
     def test_faculty_can_see_own_detail(self):
-        resp = self.faculty_client.get(reverse("faculty-detail", kwargs={"pk": 3}))
+        resp = self.faculty_3_client.get(reverse("faculty-detail", kwargs={"pk": 3}))
         data = resp.json()
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertSetEqual(
@@ -51,11 +50,11 @@ class FacultyViewTest(BaseTestCase):
         )
 
     def test_faculty_cannot_see_others_detail(self):
-        resp = self.faculty_client.get(reverse("faculty-detail", kwargs={"pk": 2}))
+        resp = self.faculty_3_client.get(reverse("faculty-detail", kwargs={"pk": 2}))
         self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_faculty_can_update_self(self):
-        resp = self.faculty_client.patch(
+        resp = self.faculty_3_client.patch(
             reverse("faculty-detail", kwargs={"pk": 3}),
             {"alt_email": "abc@example.com"},
         )
@@ -92,3 +91,54 @@ class FacultyViewTest(BaseTestCase):
     def test_scholar_cannot_see_detail(self):
         resp = self.scholar_client.get(reverse("faculty-detail", kwargs={"pk": 3}))
         self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+
+
+class FacultyNestedViewTest(BaseTestCase):
+    fixtures = ["fixtures.json"]
+
+    def test_faculty_can_see_own_research_list(self):
+        # faculty 1
+        resp = self.faculty_1_client.get(f"/api/faculties/1/projects/")
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.json()
+
+        # assert that own projects are included
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[0]["id"], 1)
+        self.assertEqual(data[1]["id"], 2)
+
+        # TODO: Test publications similarly
+
+        # faculty 3
+        resp = self.faculty_3_client.get(f"/api/faculties/3/projects/")
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.json()
+
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[0]["id"], 2)
+        self.assertEqual(data[1]["id"], 3)
+
+    def test_faculty_cannot_see_others_research(self):
+        # TODO: Make this pass
+        resp = self.faculty_1_client.get(f"/api/faculties/3/projects/")
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+
+        resp = self.faculty_1_client.get(f"/api/faculties/3/publications/")
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_hod_can_see_own_research(self):
+        resp = self.hod_client.get(f"/api/faculties/2/projects/")
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.json()
+
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]["id"], 2)
+
+    def test_hod_can_see_others_research(self):
+        resp = self.hod_client.get(f"/api/faculties/3/projects/")
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.json()
+
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[0]["id"], 2)
+        self.assertEqual(data[1]["id"], 3)
