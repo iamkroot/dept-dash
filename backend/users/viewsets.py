@@ -1,5 +1,5 @@
 from rest_framework import viewsets, mixins
-from .permissions import IsFaculty, IsSelf, IsFacultyOrIsSelf
+from .permissions import IsFaculty, IsSelf, IsHoDOrIsSelf
 
 
 class UserViewset(
@@ -13,7 +13,7 @@ class UserViewset(
         if self.action == "list":
             permission_classes = [IsFaculty]
         elif self.action == "retrieve":
-            permission_classes = [IsFacultyOrIsSelf]
+            permission_classes = [IsHoDOrIsSelf]
         else:  # update actions
             permission_classes = [IsSelf]
         return [perm() for perm in permission_classes]
