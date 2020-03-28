@@ -13,6 +13,20 @@ class SocialSerializer(serializers.Serializer):
     access_token = serializers.CharField(allow_blank=False, trim_whitespace=True)
 
 
+def get_token_for_user(user):
+    token = AccessToken.for_user(user)
+
+    # serialize user data to be sent back to client
+    for serializer in user_serializers:
+        if serializer.Meta.model is type(user):
+            token["role"] = user._meta.verbose_name
+            if getattr(user, "is_hod", False):
+                token["role"] = "hod"
+            token["user"] = serializer(user).data
+            del token["user"]["email"]  # already sent in token
+            return token
+
+
 @api_view(["POST"])
 @permission_classes([AllowAny])
 @psa()
@@ -26,17 +40,7 @@ def exchange_token(request, backend):
     except (HTTPError, AuthForbidden) as e:
         return Response({"detail": str(e)}, status=status.HTTP_403_FORBIDDEN)
 
-    token = AccessToken.for_user(user)
-
-    # serialize user data to be sent back to client
-    for serializer in user_serializers:
-        if serializer.Meta.model is type(user):
-            token["role"] = user._meta.verbose_name
-            if user.groups.filter(name="hod").exists():
-                token["role"] = "hod"
-            token["user"] = serializer(user).data
-            del token["user"]["email"]  # already sent in token
-            break
-    else:
+    token = get_token_for_user(user)
+    if not token:
         return Response(status=status.HTTP_400_BAD_REQUEST)  # Unknown User type
     return Response({"token": str(token)})
