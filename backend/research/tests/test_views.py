@@ -21,15 +21,21 @@ class PublicationTest(BaseTestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.json()
 
-        self.assertEqual(len(data), 1)
-        self.assertEqual(data[0]["id"], 4)
+        self.assertEqual(data["id"], 4)
+        self.assertSetEqual(
+            set(data.keys()), {"id", "faculty_authors", "student_authors",
+                               "scholar_authors", "title", "details", "status",
+                               "pub_type", "pub_date", "doi_number", "page_number"})
 
         resp = self.hod_client.get(f"/api/publications/2/")
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.json()
 
-        self.assertEqual(len(data), 1)
-        self.assertEqual(data[0]["id"], 2)
+        self.assertEqual(data["id"], 2)
+        self.assertSetEqual(
+            set(data.keys()), {"id", "faculty_authors", "student_authors",
+                               "scholar_authors", "title", "details", "status",
+                               "pub_type", "pub_date", "doi_number", "page_number"})
 
     def test_hod_can_update_his_publications(self):
         resp = self.hod_client.patch(
@@ -57,8 +63,11 @@ class PublicationTest(BaseTestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.json()
 
-        self.assertEqual(len(data), 1)
-        self.assertEqual(data[0]["id"], 1)
+        self.assertEqual(data["id"], 1)
+        self.assertSetEqual(
+            set(data.keys()), {"id", "faculty_authors", "student_authors",
+                               "scholar_authors", "title", "details", "status",
+                               "pub_type", "pub_date", "doi_number", "page_number"})
 
     def test_faculty_cannot_see_others_publications(self):
         resp = self.faculty_1_client.get(f"/api/publications/3/")
@@ -96,22 +105,37 @@ class ProjectTest(BaseTestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.json()
 
-        self.assertEqual(len(data), 1)
-        self.assertEqual(data[0]["id"], 2)
+        self.assertEqual(data["id"], 2)
+        self.assertSetEqual(
+            set(data.keys()), {"id", "faculty_authors", "student_authors", 
+                               "scholar_authors", "proposed_by", "title", 
+                               "details", "status", "agency", "scheme", 
+                               "pi_copi", "np_form", "send_date", 
+                               "start_date", "end_date"})
 
         resp = self.hod_client.get(f"/api/projects/3/")
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.json()
 
-        self.assertEqual(len(data), 1)
-        self.assertEqual(data[0]["id"], 3)
+        self.assertEqual(data["id"], 3)
+        self.assertSetEqual(
+            set(data.keys()), {"id", "faculty_authors", "student_authors", 
+                               "scholar_authors", "proposed_by", "title", 
+                               "details", "status", "agency", "scheme", 
+                               "pi_copi", "np_form", "send_date", 
+                               "start_date", "end_date"})
 
         resp = self.hod_client.get(f"/api/projects/4/")
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.json()
 
-        self.assertEqual(len(data), 1)
-        self.assertEqual(data[0]["id"], 4)
+        self.assertEqual(data["id"], 4)
+        self.assertSetEqual(
+            set(data.keys()), {"id", "faculty_authors", "student_authors", 
+                               "scholar_authors", "proposed_by", "title", 
+                               "details", "status", "agency", "scheme", 
+                               "pi_copi", "np_form", "send_date", 
+                               "start_date", "end_date"})
 
     def test_hod_can_update_his_project(self):
         resp = self.hod_client.patch(
@@ -144,15 +168,25 @@ class ProjectTest(BaseTestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.json()
 
-        self.assertEqual(len(data), 1)
-        self.assertEqual(data[0]["id"], 1)
+        self.assertEqual(data["id"], 1)
+        self.assertSetEqual(
+            set(data.keys()), {"id", "faculty_authors", "student_authors", 
+                               "scholar_authors", "proposed_by", "title", 
+                               "details", "status", "agency", "scheme", 
+                               "pi_copi", "np_form", "send_date", 
+                               "start_date", "end_date"})
 
         resp = self.faculty_1_client.get(f"/api/projects/2/")
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.json()
 
-        self.assertEqual(len(data), 1)
-        self.assertEqual(data[0]["id"], 2)
+        self.assertEqual(data["id"], 2)
+        self.assertSetEqual(
+            set(data.keys()), {"id", "faculty_authors", "student_authors", 
+                               "scholar_authors", "proposed_by", "title", 
+                               "details", "status", "agency", "scheme", 
+                               "pi_copi", "np_form", "send_date", 
+                               "start_date", "end_date"})
 
     def test_faculty_cannot_see_others_projects(self):
         resp = self.faculty_1_client.get(f"/api/projects/3/")
