@@ -107,7 +107,13 @@ class FacultyNestedViewTest(BaseTestCase):
         self.assertEqual(data[0]["id"], 1)
         self.assertEqual(data[1]["id"], 2)
 
-        # TODO: Test publications similarly
+        resp = self.faculty_1_client.get(f"/api/faculties/1/publications/")
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.json()
+
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[0]["id"], 1)
+        self.assertEqual(data[1]["id"], 4)
 
         # faculty 3
         resp = self.faculty_3_client.get(f"/api/faculties/3/projects/")
@@ -119,12 +125,25 @@ class FacultyNestedViewTest(BaseTestCase):
         self.assertEqual(data[1]["id"], 3)
         self.assertEqual(data[2]["id"], 4)
 
+        resp = self.faculty_3_client.get(f"/api/faculties/3/publications/")
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.json()
+
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]["id"], 3)
+
     def test_faculty_cannot_see_others_research(self):
         # TODO: Make this pass
         resp = self.faculty_1_client.get(f"/api/faculties/3/projects/")
         self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
 
         resp = self.faculty_1_client.get(f"/api/faculties/3/publications/")
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+
+        resp = self.faculty_1_client.get(f"/api/faculties/2/projects/")
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+
+        resp = self.faculty_1_client.get(f"/api/faculties/2/publications/")
         self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_hod_can_see_own_research(self):
@@ -136,6 +155,15 @@ class FacultyNestedViewTest(BaseTestCase):
         self.assertEqual(data[0]["id"], 2)
         self.assertEqual(data[1]["id"], 4)
 
+        resp = self.hod_client.get(f"/api/faculties/2/publications/")
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.json()
+
+        self.assertEqual(len(data), 3)
+        self.assertEqual(data[0]["id"], 1)
+        self.assertEqual(data[1]["id"], 2)
+        self.assertEqual(data[2]["id"], 3)
+
     def test_hod_can_see_others_research(self):
         resp = self.hod_client.get(f"/api/faculties/3/projects/")
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
@@ -145,3 +173,10 @@ class FacultyNestedViewTest(BaseTestCase):
         self.assertEqual(data[0]["id"], 2)
         self.assertEqual(data[1]["id"], 3)
         self.assertEqual(data[2]["id"], 4)
+
+        resp = self.hod_client.get(f"/api/faculties/3/publications/")
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.json()
+
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]["id"], 3)
